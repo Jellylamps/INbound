@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://diknqp7q3th1u" path="res://player_ball.tscn" id="4_g8xce"]
 [ext_resource type="PackedScene" uid="uid://ba0jnmq2pa38r" path="res://objective.tscn" id="4_vh1f5"]
 [ext_resource type="PackedScene" uid="uid://qo35g6q4hnpd" path="res://Goal.tscn" id="5_bjnk1"]
+[ext_resource type="Texture2D" uid="uid://is21lxfaaq4r" path="res://assets/diamond.png" id="6_47pih"]
 [ext_resource type="PackedScene" uid="uid://dxfyud7y6vp3o" path="res://player_ball_2.tscn" id="6_ehrqa"]
 [ext_resource type="PackedScene" uid="uid://bwd2ryk20xwlm" path="res://player_2.tscn" id="7_mri2r"]
 [ext_resource type="PackedScene" uid="uid://dxd14npleihx5" path="res://pause_menu.tscn" id="9_y40pu"]
@@ -61,6 +62,8 @@ polygon = PackedVector2Array(-88, 180, -27.2, 50.4, -27.2, -50.4, -88, -180, -14
 visible = false
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("6_wbrn7")
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_47pih")
 
 [node name="PlayerBall2" parent="." instance=ExtResource("6_ehrqa")]
 
