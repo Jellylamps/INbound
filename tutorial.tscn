@@ -101,9 +101,9 @@ theme_override_font_sizes/font_size = 21
 text = "INbound is a 2 player game intended to be played with standard controllers. 
 Each Player's goal is to score more points than their opponent and win the game!
 
-At the center of the arena is an orb. At either side of the arena is a goal zone.
-If you pick up the orb (using the left trigger) and carry it to the opponent's goal zone, you score a point!
-If you let go of the left trigger while carrying the orb, you drop it. after a short time, it will turn red, then respawn in the center.
+At the center of the arena is a gem. At either side of the arena is a goal zone.
+If you pick up the gem (using the left trigger) and carry it to the opponent's goal zone, you score a point!
+If you let go of the left trigger while carrying the gem, you drop it. after a short time, it will turn red, then respawn in the center.
 
 A player wins the game if they reach 9 or more points and have at least 2 points more than their opponent.
 
@@ -144,14 +144,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 21
 text = "You can throw a ball with the right trigger. It will go straight forward from your facing direction and bounce off walls.
-If your ball hits your opponent, they will drop the orb if they have it and they will be warped back to their starting position.
+If your ball hits your opponent, they will drop the gem if they have it and they will be warped back to their starting position.
 There is a small cooldown, but you can throw your ball again wherever it is, as long as it isn't stolen.
 
 You can steal your opponent's ball if you are facing it and holding the left bumper as it hits you.
 If you steal a ball, it will not reset your position.
 When a player's ball is stolen, they cannot throw it.
 A stolen ball is returned to its owner either by making contact with its owner or when a point is scored.
-You cannot move while holding the button to steal, and you drop the orb.
+You cannot move while holding the button to steal, and you drop the gem.
 You can throw your opponent's stolen ball with the left trigger. It will act as your own until it is returned to the opponent.
 
 You can parry your opponent's ball if you are facing it and press the right bumper just before it hits you.
