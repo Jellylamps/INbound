@@ -7,6 +7,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		if $ColorRect.visible:
 			$ColorRect.hide()
+			$Dark.hide()
 			$BasicsText.hide()
 			$MovementText.hide()
 			$BallText.hide()
@@ -17,6 +18,7 @@ func _process(delta):
 
 func _on_basics_pressed():
 	$ColorRect.show()
+	$Dark.show()
 	$BasicsText.show()
 	$MarginContainer/VBoxContainer/Basics.disabled = !$MarginContainer/VBoxContainer/Basics.disabled
 	$MarginContainer/VBoxContainer/Movement.disabled = !$MarginContainer/VBoxContainer/Movement.disabled
@@ -25,6 +27,7 @@ func _on_basics_pressed():
 
 func _on_movement_pressed():
 	$ColorRect.show()
+	$Dark.show()
 	$MovementText.show()
 	$MarginContainer/VBoxContainer/Basics.disabled = !$MarginContainer/VBoxContainer/Basics.disabled
 	$MarginContainer/VBoxContainer/Movement.disabled = !$MarginContainer/VBoxContainer/Movement.disabled
@@ -33,6 +36,7 @@ func _on_movement_pressed():
 
 func _on_ball_mech_pressed():
 	$ColorRect.show()
+	$Dark.show()
 	$BallText.show()
 	$MarginContainer/VBoxContainer/Basics.disabled = !$MarginContainer/VBoxContainer/Basics.disabled
 	$MarginContainer/VBoxContainer/Movement.disabled = !$MarginContainer/VBoxContainer/Movement.disabled

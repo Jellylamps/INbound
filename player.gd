@@ -43,29 +43,29 @@ func angle_difference(a1,a2):
 func eval_keys():
 	if Input.is_action_pressed("keyup") and !Input.is_action_pressed("keydown"):
 		if Input.is_action_pressed("keyleft") and !Input.is_action_pressed("keyright"):
-			input_direction.x = -sqrt(2)/3
-			input_direction.y = -sqrt(2)/3
+			input_direction.x = -sqrt(2)/2
+			input_direction.y = -sqrt(2)/2
 		elif Input.is_action_pressed("keyright") and !Input.is_action_pressed("keyleft"):
-			input_direction.x = sqrt(2)/3
-			input_direction.y = -sqrt(2)/3
+			input_direction.x = sqrt(2)/2
+			input_direction.y = -sqrt(2)/2
 		else:
 			input_direction.x = 0
-			input_direction.y = -2.0/3
+			input_direction.y = -1
 	elif Input.is_action_pressed("keydown") and !Input.is_action_pressed("keyup"):
 		if Input.is_action_pressed("keyleft") and !Input.is_action_pressed("keyright"):
-			input_direction.x = -sqrt(2)/3
-			input_direction.y = sqrt(2)/3
+			input_direction.x = -sqrt(2)/2
+			input_direction.y = sqrt(2)/2
 		elif Input.is_action_pressed("keyright") and !Input.is_action_pressed("keyleft"):
-			input_direction.x = sqrt(2)/3
-			input_direction.y = sqrt(2)/3
+			input_direction.x = sqrt(2)/2
+			input_direction.y = sqrt(2)/2
 		else:
 			input_direction.x = 0
-			input_direction.y = 2.0/3
+			input_direction.y = 1
 	elif Input.is_action_pressed("keyleft") and !Input.is_action_pressed("keyright"):
-		input_direction.x = -2.0/3
+		input_direction.x = -1
 		input_direction.y = 0
 	elif Input.is_action_pressed("keyright") and !Input.is_action_pressed("keyleft"):
-		input_direction.x = 2.0/3
+		input_direction.x = 1
 		input_direction.y = 0
 	return input_direction
 

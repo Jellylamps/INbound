@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ba0jnmq2pa38r"]
 
-[ext_resource type="Texture2D" uid="uid://wv0sqibripw4" path="res://assets/ball.png" id="1_am8u2"]
+[ext_resource type="Texture2D" uid="uid://is21lxfaaq4r" path="res://assets/diamond.png" id="1_hwxll"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oy7tv"]
 radius = 21.0238
@@ -12,7 +12,7 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.08, 0.08)
-texture = ExtResource("1_am8u2")
+texture = ExtResource("1_hwxll")
 
 [node name="GrabBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oy7tv")

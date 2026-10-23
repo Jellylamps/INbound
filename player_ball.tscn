@@ -45,6 +45,7 @@ stream = ExtResource("3_6cqn2")
 
 [node name="Catch" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_1lty4")
+volume_db = 1.0
 
 [node name="Parry" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_r8lm0")
@@ -52,6 +53,7 @@ volume_db = -5.0
 
 [node name="Throw" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_l8qb0")
+volume_db = 1.0
 
 [node name="Trail" type="Line2D" parent="."]
 show_behind_parent = true

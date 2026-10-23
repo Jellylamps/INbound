@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://ba0jnmq2pa38r" path="res://objective.tscn" id="4_vh1f5"]
 [ext_resource type="PackedScene" uid="uid://qo35g6q4hnpd" path="res://Goal.tscn" id="5_bjnk1"]
 [ext_resource type="PackedScene" uid="uid://dxfyud7y6vp3o" path="res://player_ball_2.tscn" id="6_ehrqa"]
-[ext_resource type="Texture2D" uid="uid://wv0sqibripw4" path="res://assets/ball.png" id="6_wbrn7"]
 [ext_resource type="PackedScene" uid="uid://bwd2ryk20xwlm" path="res://player_2.tscn" id="7_mri2r"]
 [ext_resource type="PackedScene" uid="uid://dxd14npleihx5" path="res://pause_menu.tscn" id="9_y40pu"]
 [ext_resource type="AudioStream" uid="uid://cnpj7qmc3yrcq" path="res://assets/goal.wav" id="11_i7nqn"]
@@ -76,8 +75,8 @@ scale = Vector2(5, 5)
 polygon = PackedVector2Array(-88, 180, -27.2, 50.4, -27.2, -50.4, -88, -180, -140, -144, -184, -80, -200, 0, -184, 84, -140, 144)
 
 [node name="Holding" type="Sprite2D" parent="Player2"]
-scale = Vector2(0.04, 0.04)
-texture = ExtResource("6_wbrn7")
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_47pih")
 
 [node name="Upwall" type="CharacterBody2D" parent="."]
 

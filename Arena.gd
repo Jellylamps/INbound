@@ -79,7 +79,7 @@ func _process(delta):
 	else:
 		$Player2/Holding.hide()
 	pause_menu()
-	if goal and (playerScore > 20 and (playerScore - opponentScore) > 1) or (opponentScore > 20 and (opponentScore - playerScore) > 1):
+	if goal and (playerScore > 8 and (playerScore - opponentScore) > 1) or (opponentScore > 8 and (opponentScore - playerScore) > 1):
 			end = true
 			end_menu()
 	goal = false

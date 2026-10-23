@@ -76,6 +76,13 @@ material = SubResource("ShaderMaterial_qojth")
 offset_right = 1280.0
 offset_bottom = 720.0
 
+[node name="Dark" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.466667)
+
 [node name="BasicsText" type="Label" parent="."]
 visible = false
 layout_mode = 1
@@ -90,6 +97,7 @@ offset_right = 488.0
 offset_bottom = 128.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 21
 text = "INbound is a 2 player game intended to be played with standard controllers. 
 Each Player's goal is to score more points than their opponent and win the game!
 
@@ -97,7 +105,7 @@ At the center of the arena is an orb. At either side of the arena is a goal zone
 If you pick up the orb (using the left trigger) and carry it to the opponent's goal zone, you score a point!
 If you let go of the left trigger while carrying the orb, you drop it. after a short time, it will turn red, then respawn in the center.
 
-A player wins the game if they reach 21 or more points and have at least 2 points more than their opponent.
+A player wins the game if they reach 9 or more points and have at least 2 points more than their opponent.
 
 The start button pauses the game."
 
@@ -115,6 +123,7 @@ offset_right = 450.5
 offset_bottom = 37.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 21
 text = "You can move your character through the arena with the left control stick.
 With the right control stick, you can change your facing direction, indicated by the white tick mark on your character.
 If your facing direction points toward the red zone behind your character, your movement is slowed."
@@ -133,6 +142,7 @@ offset_right = 472.5
 offset_bottom = 193.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 21
 text = "You can throw a ball with the right trigger. It will go straight forward from your facing direction and bounce off walls.
 If your ball hits your opponent, they will drop the orb if they have it and they will be warped back to their starting position.
 There is a small cooldown, but you can throw your ball again wherever it is, as long as it isn't stolen.
