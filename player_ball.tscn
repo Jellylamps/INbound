@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://diknqp7q3th1u"]
+
+[ext_resource type="Texture2D" uid="uid://wv0sqibripw4" path="res://assets/ball.png" id="1_fyfns"]
+[ext_resource type="Script" path="res://player_ball.gd" id="1_jiii0"]
+[ext_resource type="AudioStream" uid="uid://dxo2ov8jbd4d3" path="res://assets/bounce.wav" id="3_6cqn2"]
+[ext_resource type="AudioStream" uid="uid://di7d1ckomiwmc" path="res://assets/catch.wav" id="4_1lty4"]
+[ext_resource type="AudioStream" uid="uid://roq8hrihlhtc" path="res://assets/parry.wav" id="5_r8lm0"]
+[ext_resource type="AudioStream" uid="uid://483hrtjq54rh" path="res://assets/throw.wav" id="6_l8qb0"]
+[ext_resource type="Script" path="res://Trail.gd" id="7_ti8m4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gnsno"]
+radius = 13.0
+
+[sub_resource type="Curve" id="Curve_45s32"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_xff3m"]
+colors = PackedColorArray(0.701961, 0, 0.678431, 0.654902, 0.105882, 0.105882, 0.105882, 0)
+
+[node name="PlayerBall" type="CharacterBody2D"]
+position = Vector2(100, 360)
+scale = Vector2(1.5, 1.5)
+collision_layer = 4
+collision_mask = 145
+script = ExtResource("1_jiii0")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gnsno")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.701961, 0, 0.678431, 1)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("1_fyfns")
+
+[node name="Rethrow" type="Timer" parent="."]
+wait_time = 0.7
+
+[node name="ParryFreeze" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Bounce" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6cqn2")
+
+[node name="Catch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_1lty4")
+
+[node name="Parry" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_r8lm0")
+volume_db = -5.0
+
+[node name="Throw" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_l8qb0")
+
+[node name="Trail" type="Line2D" parent="."]
+show_behind_parent = true
+top_level = true
+width = 40.0
+width_curve = SubResource("Curve_45s32")
+gradient = SubResource("Gradient_xff3m")
+script = ExtResource("7_ti8m4")
+
+[connection signal="timeout" from="Rethrow" to="." method="_on_rethrow_timeout"]
+[connection signal="timeout" from="ParryFreeze" to="." method="_on_parry_freeze_timeout"]

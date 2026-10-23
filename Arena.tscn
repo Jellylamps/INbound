@@ -1,0 +1,179 @@
+[gd_scene load_steps=16 format=3 uid="uid://d35rh7ngdvwjd"]
+
+[ext_resource type="Script" path="res://Arena.gd" id="1_32f7i"]
+[ext_resource type="PackedScene" uid="uid://cvco6t5lk2x3b" path="res://player.tscn" id="1_v0djb"]
+[ext_resource type="Texture2D" uid="uid://vqy1ex7pwocl" path="res://assets/SlowAngle.png" id="3_4igrj"]
+[ext_resource type="PackedScene" uid="uid://diknqp7q3th1u" path="res://player_ball.tscn" id="4_g8xce"]
+[ext_resource type="PackedScene" uid="uid://ba0jnmq2pa38r" path="res://objective.tscn" id="4_vh1f5"]
+[ext_resource type="PackedScene" uid="uid://qo35g6q4hnpd" path="res://Goal.tscn" id="5_bjnk1"]
+[ext_resource type="PackedScene" uid="uid://dxfyud7y6vp3o" path="res://player_ball_2.tscn" id="6_ehrqa"]
+[ext_resource type="Texture2D" uid="uid://wv0sqibripw4" path="res://assets/ball.png" id="6_wbrn7"]
+[ext_resource type="PackedScene" uid="uid://bwd2ryk20xwlm" path="res://player_2.tscn" id="7_mri2r"]
+[ext_resource type="PackedScene" uid="uid://dxd14npleihx5" path="res://pause_menu.tscn" id="9_y40pu"]
+[ext_resource type="AudioStream" uid="uid://cnpj7qmc3yrcq" path="res://assets/goal.wav" id="11_i7nqn"]
+[ext_resource type="AudioStream" uid="uid://56reikd5a208" path="res://assets/gameplay.mp3" id="12_y4a36"]
+[ext_resource type="PackedScene" uid="uid://diovu0d1c1kti" path="res://end.tscn" id="13_j6ggp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j6ld"]
+size = Vector2(1280, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntqn5"]
+size = Vector2(81, 810)
+
+[node name="ColorRect" type="ColorRect"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.137255, 0.137255, 0.137255, 1)
+script = ExtResource("1_32f7i")
+
+[node name="Objective" parent="." instance=ExtResource("4_vh1f5")]
+
+[node name="ObjectiveWarning" type="Timer" parent="Objective"]
+
+[node name="ObjectiveReset" type="Timer" parent="Objective"]
+wait_time = 8.0
+
+[node name="PlayerSlowAngle" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+position = Vector2(100, 360)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_4igrj")
+
+[node name="Player2SlowAngle" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+position = Vector2(1180, 360)
+rotation = 3.14159
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_4igrj")
+
+[node name="PlayerBall" parent="." instance=ExtResource("4_g8xce")]
+
+[node name="Player" parent="." instance=ExtResource("1_v0djb")]
+
+[node name="PlayerUncatch" type="Area2D" parent="Player"]
+scale = Vector2(0.25, 0.25)
+collision_mask = 7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player/PlayerUncatch"]
+scale = Vector2(5, 5)
+polygon = PackedVector2Array(-88, 180, -27.2, 50.4, -27.2, -50.4, -88, -180, -140, -144, -184, -80, -200, 0, -184, 84, -140, 144)
+
+[node name="Holding" type="Sprite2D" parent="Player"]
+visible = false
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("6_wbrn7")
+
+[node name="PlayerBall2" parent="." instance=ExtResource("6_ehrqa")]
+
+[node name="Player2" parent="." instance=ExtResource("7_mri2r")]
+
+[node name="Player2Uncatch" type="Area2D" parent="Player2"]
+scale = Vector2(0.25, 0.25)
+collision_mask = 7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player2/Player2Uncatch"]
+scale = Vector2(5, 5)
+polygon = PackedVector2Array(-88, 180, -27.2, 50.4, -27.2, -50.4, -88, -180, -140, -144, -184, -80, -200, 0, -184, 84, -140, 144)
+
+[node name="Holding" type="Sprite2D" parent="Player2"]
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("6_wbrn7")
+
+[node name="Upwall" type="CharacterBody2D" parent="."]
+
+[node name="WallBoxUp" type="CollisionShape2D" parent="Upwall"]
+position = Vector2(640, -22.5)
+shape = SubResource("RectangleShape2D_0j6ld")
+
+[node name="DownWall2" type="CharacterBody2D" parent="."]
+
+[node name="WallBoxDown" type="CollisionShape2D" parent="DownWall2"]
+position = Vector2(640, 742.5)
+shape = SubResource("RectangleShape2D_0j6ld")
+
+[node name="LeftWall" type="CharacterBody2D" parent="."]
+
+[node name="WallBoxLeft" type="CollisionShape2D" parent="LeftWall"]
+position = Vector2(-40.5, 360)
+shape = SubResource("RectangleShape2D_ntqn5")
+
+[node name="RightWall" type="CharacterBody2D" parent="."]
+
+[node name="WallBoxRight" type="CollisionShape2D" parent="RightWall"]
+position = Vector2(1320.5, 360)
+shape = SubResource("RectangleShape2D_ntqn5")
+
+[node name="LeftGoal" parent="." instance=ExtResource("5_bjnk1")]
+top_level = true
+
+[node name="RightGoal" parent="." instance=ExtResource("5_bjnk1")]
+top_level = true
+position = Vector2(1280, 360)
+rotation = 3.14159
+
+[node name="ParryFreeze" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="ParryFreeze2" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Spacer" type="Label" parent="."]
+layout_mode = 0
+offset_left = 630.0
+offset_right = 650.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 30
+text = "|"
+horizontal_alignment = 1
+
+[node name="PlayerScore" type="Label" parent="."]
+layout_mode = 0
+offset_left = 530.0
+offset_top = 5.0
+offset_right = 630.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 30
+text = "Hi"
+horizontal_alignment = 2
+
+[node name="OpponentScore" type="Label" parent="."]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 5.0
+offset_right = 750.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 30
+text = "Hi"
+
+[node name="Pause_Menu" parent="." instance=ExtResource("9_y40pu")]
+visible = false
+layout_mode = 1
+
+[node name="Goal" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_i7nqn")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1180, 360)
+rotation = 3.14159
+scale = Vector2(1.25, 1.25)
+stream = ExtResource("12_y4a36")
+autoplay = true
+
+[node name="End" parent="." instance=ExtResource("13_j6ggp")]
+visible = false
+layout_mode = 1
+
+[connection signal="body_shape_entered" from="Objective" to="." method="_on_objective_body_shape_entered"]
+[connection signal="body_shape_exited" from="Objective" to="." method="_on_objective_body_shape_exited"]
+[connection signal="timeout" from="Objective/ObjectiveWarning" to="." method="_on_objective_warning_timeout"]
+[connection signal="timeout" from="Objective/ObjectiveReset" to="." method="_on_objective_reset_timeout"]
+[connection signal="body_shape_entered" from="Player/PlayerUncatch" to="." method="_on_player_uncatch_body_shape_entered"]
+[connection signal="body_shape_exited" from="Player/PlayerUncatch" to="." method="_on_player_uncatch_body_shape_exited"]
+[connection signal="body_shape_entered" from="Player2/Player2Uncatch" to="." method="_on_player_2_uncatch_body_shape_entered"]
+[connection signal="body_shape_exited" from="Player2/Player2Uncatch" to="." method="_on_player_2_uncatch_body_shape_exited"]
+[connection signal="area_shape_entered" from="LeftGoal" to="." method="_on_left_goal_area_shape_entered"]
+[connection signal="body_entered" from="LeftGoal" to="." method="_on_left_goal_body_entered"]
+[connection signal="body_shape_entered" from="LeftGoal" to="." method="_on_left_goal_body_shape_entered"]
+[connection signal="area_shape_entered" from="RightGoal" to="." method="_on_right_goal_area_shape_entered"]
+[connection signal="timeout" from="ParryFreeze" to="." method="_on_parry_freeze_timeout"]
+[connection signal="timeout" from="ParryFreeze2" to="." method="_on_parry_freeze_2_timeout"]

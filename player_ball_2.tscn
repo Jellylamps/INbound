@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxfyud7y6vp3o"]
+
+[ext_resource type="Script" path="res://PlayerBall2.gd" id="1_2rll8"]
+[ext_resource type="Texture2D" uid="uid://wv0sqibripw4" path="res://assets/ball.png" id="2_q2qxk"]
+[ext_resource type="AudioStream" uid="uid://dxo2ov8jbd4d3" path="res://assets/bounce.wav" id="3_gbrhg"]
+[ext_resource type="AudioStream" uid="uid://di7d1ckomiwmc" path="res://assets/catch.wav" id="4_o6ieh"]
+[ext_resource type="AudioStream" uid="uid://roq8hrihlhtc" path="res://assets/parry.wav" id="5_tuhfu"]
+[ext_resource type="AudioStream" uid="uid://483hrtjq54rh" path="res://assets/throw.wav" id="6_gyedc"]
+[ext_resource type="Script" path="res://Trail.gd" id="7_545dh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gnsno"]
+radius = 13.0
+
+[sub_resource type="Curve" id="Curve_3y4vd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_bsvfc"]
+colors = PackedColorArray(0.721569, 0.188235, 0, 0.639216, 0.105882, 0.105882, 0.105882, 0)
+
+[node name="PlayerBall2" type="CharacterBody2D"]
+position = Vector2(1180, 360)
+scale = Vector2(1.5, 1.5)
+collision_layer = 4
+collision_mask = 137
+script = ExtResource("1_2rll8")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gnsno")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.721569, 0.188235, 0, 1)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("2_q2qxk")
+
+[node name="Rethrow" type="Timer" parent="."]
+wait_time = 0.7
+
+[node name="ParryFreeze" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Bounce" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gbrhg")
+
+[node name="Catch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_o6ieh")
+
+[node name="Parry" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_tuhfu")
+volume_db = -5.0
+
+[node name="Throw" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_gyedc")
+
+[node name="Trail" type="Line2D" parent="."]
+show_behind_parent = true
+top_level = true
+width = 40.0
+width_curve = SubResource("Curve_3y4vd")
+gradient = SubResource("Gradient_bsvfc")
+script = ExtResource("7_545dh")
+
+[connection signal="timeout" from="Rethrow" to="." method="_on_rethrow_timeout"]
+[connection signal="timeout" from="ParryFreeze" to="." method="_on_parry_freeze_timeout"]

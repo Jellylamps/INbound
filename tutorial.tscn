@@ -1,0 +1,159 @@
+[gd_scene load_steps=6 format=3 uid="uid://4tu64kj5v02g"]
+
+[ext_resource type="Script" path="res://tutorial.gd" id="1_tdq1h"]
+[ext_resource type="Script" path="res://button.gd" id="2_4rugg"]
+[ext_resource type="Shader" path="res://pause_menu.gdshader" id="3_fd3sw"]
+[ext_resource type="AudioStream" uid="uid://bbn53071igay" path="res://assets/menu_theme.mp3" id="4_jajdr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qojth"]
+shader = ExtResource("3_fd3sw")
+shader_parameter/amount = 3.0
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tdq1h")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -320.0
+offset_right = 200.0
+offset_bottom = -149.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(200, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Basics" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Menu")
+text = "Basics"
+script = ExtResource("2_4rugg")
+
+[node name="Movement" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Movement"
+
+[node name="BallMech" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Ball Mechanics"
+
+[node name="Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Basics")
+text = "Return to Main Menu"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -227.0
+offset_top = 170.0
+offset_right = 227.0
+offset_bottom = 331.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 120
+text = "Tutorial"
+scroll_active = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_qojth")
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="BasicsText" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -488.0
+offset_top = -128.5
+offset_right = 488.0
+offset_bottom = 128.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "INbound is a 2 player game intended to be played with standard controllers. 
+Each Player's goal is to score more points than their opponent and win the game!
+
+At the center of the arena is an orb. At either side of the arena is a goal zone.
+If you pick up the orb (using the left trigger) and carry it to the opponent's goal zone, you score a point!
+If you let go of the left trigger while carrying the orb, you drop it. after a short time, it will turn red, then respawn in the center.
+
+A player wins the game if they reach 21 or more points and have at least 2 points more than their opponent.
+
+The start button pauses the game."
+
+[node name="MovementText" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.5
+offset_top = -37.5
+offset_right = 450.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You can move your character through the arena with the left control stick.
+With the right control stick, you can change your facing direction, indicated by the white tick mark on your character.
+If your facing direction points toward the red zone behind your character, your movement is slowed."
+
+[node name="BallText" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -472.5
+offset_top = -193.5
+offset_right = 472.5
+offset_bottom = 193.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You can throw a ball with the right trigger. It will go straight forward from your facing direction and bounce off walls.
+If your ball hits your opponent, they will drop the orb if they have it and they will be warped back to their starting position.
+There is a small cooldown, but you can throw your ball again wherever it is, as long as it isn't stolen.
+
+You can steal your opponent's ball if you are facing it and holding the left bumper as it hits you.
+If you steal a ball, it will not reset your position.
+When a player's ball is stolen, they cannot throw it.
+A stolen ball is returned to its owner either by making contact with its owner or when a point is scored.
+You cannot move while holding the button to steal, and you drop the orb.
+You can throw your opponent's stolen ball with the left trigger. It will act as your own until it is returned to the opponent.
+
+You can parry your opponent's ball if you are facing it and press the right bumper just before it hits you.
+The time frame a parry will be successful is indicated by your character flashing white.
+If your parry is successful, the ball will be sent directly to your opponent at a higher speed.
+While your parry is active, your position and facing direction both freeze."
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_jajdr")
+autoplay = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Basics" to="." method="_on_basics_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Movement" to="." method="_on_movement_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BallMech" to="." method="_on_ball_mech_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
